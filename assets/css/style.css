@@ -1,13 +1,135 @@
+/*font-family: 'Montserrat', sans-serif;
+font-family: 'Sniglet', cursive;*/
+
 html, body {
 	height: 100%;
 	width: 100%;
+	font-family: 'Sniglet', cursive;
+	color: white;
+	background: #333;
 }
 
-.queryBtn {
-	margin: 10px 15px;
+#btnContainer {
+	margin-left: 8.5rem;
 }
+
+/*---------------
+	Buttons
+----------------*/
+
+.queryBtn {
+	margin: 1.5rem;
+	color: #333;
+	cursor: pointer;
+	background-color: #f1c40f;
+	border-radius: 4px;
+	border: none;
+	font-size: 20px;
+	padding: 10px;
+	transition: all 0.5s;
+}
+
+.queryBtn span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+
+.queryBtn span:after {
+	content: '\00bb';
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+
+.queryBtn:hover span {
+	padding-right: 1.7rem;
+}
+
+.queryBtn:hover span:after {
+	opacity: 1;
+	right: 0;
+}
+
+#searchBtn {
+	float: right;
+}
+
+
 
 .gifItems {
 	display: inline-block;
 	margin: 1rem;
+	text-align: center;
+
 }
+
+.logo {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 500;
+	font-size: 12rem;
+	/*-webkit-animation: color-change 1.5s infinite;
+        -moz-animation: color-change 1.5s infinite;
+        -o-animation: color-change 1.5s infinite;
+        -ms-animation: color-change 1.5s infinite;
+        animation: color-change 1.5s infinite;*/
+
+    background: linear-gradient(231deg, #f29492, #4568dc, #b06ab3, #5bae83, #ae5b70, #5bae83);
+    background-size: 200% auto;
+	animation: gradient 10s ease infinite;
+	-webkit-animation: gradient 15s ease infinite;
+	-moz-animation: gradient 15s ease infinite;
+	-o-animation: gradient 15s ease infinite;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#displayGIFs {
+	margin-left: 6rem
+}
+
+@-webkit-keyframes gradient {
+    0%{background-position:90% 0%}
+    50%{background-position:11% 100%}
+    100%{background-position:90% 0%}
+}
+@-moz-keyframes gradient {
+    0%{background-position:90% 0%}
+    50%{background-position:11% 100%}
+    100%{background-position:90% 0%}
+}
+@-o-keyframes gradient {
+    0%{background-position:90% 0%}
+    50%{background-position:11% 100%}
+    100%{background-position:90% 0%}
+}
+@keyframes gradient {
+    0%{background-position:90% 0%}
+    50%{background-position:11% 100%}
+    100%{background-position:90% 0%}
+}
+
+/*@-webkit-keyframes color-change {
+        0% { color: #f29492; }
+        50% { color: #4568dc; }
+        100% { color: #5bae83; }
+    }
+@-moz-keyframes color-change {
+        0% { color: #f29492; }
+        50% { color: #4568dc; }
+        100% { color: #5bae83; }
+    }
+@-o-keyframes color-change {
+        0% { color: #f29492; }
+        50% { color: #4568dc; }
+        100% { color: #5bae83; }
+    }
+@keyframes color-change {
+        0% { color: #f29492; }
+        50% { color: #4568dc; }
+        100% { color: #5bae83; }
+    }*/

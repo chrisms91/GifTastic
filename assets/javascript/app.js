@@ -4,7 +4,7 @@
 
 var gifTastic = {
 
-	buttonArray: ['dogs', 'cats', 'birds', 'lol', 'fail', 'laugh', 'basketball', 'poke', 'prank', 'jump'],
+	buttonArray: ['dogs', 'cats', 'birds', 'lol', 'fail', 'laugh', 'basketball', 'poke', 'kobi', 'billy'],
 
 	renderButtons: function() {
 
@@ -14,10 +14,10 @@ var gifTastic = {
 		//add buttons
 		for(var i=0; i<gifTastic.buttonArray.length; i++){
 			var newBtn = $('<button>');
-			newBtn.addClass('btn');
+			// newBtn.addClass('btn');
 			newBtn.addClass('queryBtn');
 			newBtn.attr('data-value', gifTastic.buttonArray[i]);
-			newBtn.text(gifTastic.buttonArray[i]);
+			newBtn.html('<span>' + gifTastic.buttonArray[i] + '</span>');
 			$('#btnContainer').append(newBtn);
 		}
 	},
@@ -50,8 +50,8 @@ var gifTastic = {
       			//append rating
       			var p = $('<p>').text("Rating: " + results[i].rating);
 
+      			//img attributes
       			var gifImage = $('<img>');
-
       			gifImage.addClass('gifs');
       			gifImage.attr('data-animate', animateLink);
       			gifImage.attr('data-still', stillLink);
