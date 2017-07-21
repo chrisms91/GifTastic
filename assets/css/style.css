@@ -6,3 +6,8 @@ html, body {
 .queryBtn {
 	margin: 10px 15px;
 }
+
+.gifItems {
+	display: inline-block;
+	margin: 1rem;
+}
