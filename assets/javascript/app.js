@@ -82,8 +82,6 @@ var gifTastic = {
 
   			$('#displayGIFs').append(imageDiv);
   		}
-  
-  		gifTastic.animateGif();
 	},
 
 	//when user click image, it changes src to animate gif.
@@ -92,6 +90,7 @@ var gifTastic = {
 		$(document).on('click', '.gifs', function(){
 			//grab current state of gif
 			var state = $(this).attr('data-state');
+			console.log(state);
 
 			if(state === 'still'){
 
@@ -164,6 +163,8 @@ window.onload = function () {
 		gifTastic.displayInfo();
 
 	});
+
+	gifTastic.animateGif();
 
 	// when scroll is at bottom, load more data.
 	$(window).scroll(function () {
