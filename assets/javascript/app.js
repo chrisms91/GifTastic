@@ -4,7 +4,11 @@
 
 var gifTastic = {
 
-	buttonArray: ['dogs', 'cats', 'birds', 'lol', 'fail', 'laugh', 'basketball', 'poke', 'kobi', 'billy'],
+	buttonArray: ['you', 'should', 'drink', 'beer', 'everyday', 'laugh', 'lol', 'party', 'dogs', 'cats'],
+	offset: 0,
+	loadLimit: 10,
+	results: {},
+
 
 	renderButtons: function() {
 
@@ -22,55 +26,70 @@ var gifTastic = {
 		}
 	},
 
-	displayInfo: function (e) {
+	loadData: function (input, inputQuery) {
+		console.log("loadData() is called");
+		var value = input;
+		var queryURL = inputQuery;
 
-		$('#displayGIFs').empty();
-		e.preventDefault();
-
-		var value = $(this).attr('data-value');
 		console.log(value);
-      	var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + value + "&api_key=dc6zaTOxFJmzC&limit=10&offset=6";
+		console.log(queryURL);
 
-      	$.ajax({
+		$.ajax({
+      		async: false,
       		url: queryURL,
       		method: 'GET'
       	}).done(function(event){
       		
-      		var results = event.data;
-      		console.log(results);
-
-      		for(var i=0; i<results.length; i++){
-
-      			var imageDiv = $('<div>');
-      			imageDiv.addClass('gifItems');
-
-      			var animateLink = results[i].images.fixed_height.url;
-      			var stillLink = results[i].images.fixed_height_still.url;
-
-      			//append rating
-      			var p = $('<p>').text("Rating: " + results[i].rating);
-
-      			//img attributes
-      			var gifImage = $('<img>');
-      			gifImage.addClass('gifs');
-      			gifImage.attr('data-animate', animateLink);
-      			gifImage.attr('data-still', stillLink);
-      			gifImage.attr('data-state', 'still');
-      			gifImage.attr('src', stillLink);
-      			
-      			imageDiv.append(p);
-      			imageDiv.append(gifImage);
-
-      			$('#displayGIFs').append(imageDiv);
-      		}
-
-      		gifTastic.animateGif();
+      		//store data in object variable results.
+      		gifTastic.results = event.data;
       	});
 	},
 
-	animateGif: function () {
-		$('.gifs').on('click', function(){
+	displayInfo: function () {
 
+		// var value = $(this).attr('data-value');
+		// console.log(value);
+  //     	var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + value + "&api_key=dc6zaTOxFJmzC&limit=200";
+  //     	var results;
+
+      	//grab data from ajax call.
+      	
+
+      	console.log("displayInfo() is called");
+      	console.log("offset: " + gifTastic.offset);
+
+  		for(var i=gifTastic.offset; i< gifTastic.offset + 10; i++){
+
+  			var imageDiv = $('<div>');
+  			imageDiv.addClass('gifItems');
+
+  			var animateLink = gifTastic.results[i].images.fixed_height.url;
+  			var stillLink = gifTastic.results[i].images.fixed_height_still.url;
+
+  			//append rating
+  			var p = $('<p>').text("Rating: " + gifTastic.results[i].rating);
+
+  			//img attributes
+  			var gifImage = $('<img>');
+  			gifImage.addClass('gifs');
+  			gifImage.attr('data-animate', animateLink);
+  			gifImage.attr('data-still', stillLink);
+  			gifImage.attr('data-state', 'still');
+  			gifImage.attr('src', stillLink);
+  			
+  			imageDiv.append(p);
+  			imageDiv.append(gifImage);
+
+  			$('#displayGIFs').append(imageDiv);
+  		}
+  
+  		gifTastic.animateGif();
+	},
+
+	//when user click image, it changes src to animate gif.
+	animateGif: function () {
+
+		$(document).on('click', '.gifs', function(){
 			//grab current state of gif
 			var state = $(this).attr('data-state');
 
@@ -83,16 +102,36 @@ var gifTastic = {
 				$(this).attr('src', $(this).attr('data-still') );
         		$(this).attr('data-state', 'still');
 			}
-			
 		})
+
+		//DIDNT WORK FOR SOME REASON AFTER LOADED MORE DATA ON SCROLL';;;
+
+		// $('.gifs').on('click', function(){
+
+		// 	//grab current state of gif
+		// 	var state = $(this).attr('data-state');
+
+		// 	if(state === 'still'){
+
+		// 		$(this).attr('src', $(this).attr('data-animate') );
+  //       		$(this).attr('data-state', 'animate');
+		// 	} else {
+
+		// 		$(this).attr('src', $(this).attr('data-still') );
+  //       		$(this).attr('data-state', 'still');
+		// 	}
+			
+		// })
 	}
 }
 
 
 window.onload = function () {
 
+	//render initial buttons 
 	gifTastic.renderButtons();
 
+	//handle event when searchBtn is clicked
 	$('#searchBtn').on('click', function(event) {
 
 		event.preventDefault();
@@ -111,6 +150,33 @@ window.onload = function () {
 	});
 
 	// $('.queryBtn').on('click', gifTastic.displayInfo);
-	$(document).on('click', '.queryBtn', gifTastic.displayInfo);
+	//since queryBtns are dynamically created, it has to be handled with $(document) level
+	$(document).on('click', '.queryBtn', function(event) {
+
+		var input = $(this).attr('data-value');
+		var inputQuery = "http://api.giphy.com/v1/gifs/search?q=" + input + "&api_key=dc6zaTOxFJmzC&limit=200";
+
+		gifTastic.loadData(input, inputQuery);
+
+		gifTastic.offset = 0;
+		event.preventDefault();
+		$('#displayGIFs').empty();
+		gifTastic.displayInfo();
+
+	});
+
+	// when scroll is at bottom, load more data.
+	$(window).scroll(function () {
+		if($(window).scrollTop() === $(document).height() - $(window).height()){
+
+			//check limit of offset before increment so it won't go over results.length
+			if(gifTastic.offset < gifTastic.results.length - gifTastic.loadLimit){
+				gifTastic.offset += 10;
+			}
+
+			//add little delay before load more images.
+			setTimeout(gifTastic.displayInfo, 1000);
+		}
+  	})
 
 }
