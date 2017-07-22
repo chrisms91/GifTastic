@@ -55,7 +55,10 @@ html, body {
 }
 
 #searchBtn {
-	float: right;
+	position: relative;
+	width: 60px;
+	padding: 10px auto;
+	left: -35px;
 }
 
 

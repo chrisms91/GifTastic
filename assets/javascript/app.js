@@ -29,7 +29,7 @@ var gifTastic = {
 
 		var value = $(this).attr('data-value');
 		console.log(value);
-      	var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + value + "&api_key=dc6zaTOxFJmzC&limit=10";
+      	var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + value + "&api_key=dc6zaTOxFJmzC&limit=10&offset=6";
 
       	$.ajax({
       		url: queryURL,
@@ -64,11 +64,11 @@ var gifTastic = {
       			$('#displayGIFs').append(imageDiv);
       		}
 
-      		gifTastic.pauseGif();
+      		gifTastic.animateGif();
       	});
 	},
 
-	pauseGif: function () {
+	animateGif: function () {
 		$('.gifs').on('click', function(){
 
 			//grab current state of gif
