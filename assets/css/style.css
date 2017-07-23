@@ -9,9 +9,21 @@ html, body {
 	background: #121212;
 }
 
-#btnContainer {
-	margin-left: 8.5rem;
+/* centered columns styles */
+.row-centered {
+    text-align:center;
 }
+.col-centered {
+    display:inline-block;
+    float:none;
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+.form-group {
+		margin-bottom: 40px;
+		margin: 0 auto;
+	}
 
 /*---------------
 	Buttons
@@ -58,12 +70,6 @@ html, body {
 	outline: none;
 }
 
-/*#searchBtn {
-	position: relative;
-	width: 60px;
-	padding: 6.6px 13px;
-	left: -30px;
-}*/
 
 /* Tooltip */
 .inputBtn + .tooltip > .tooltip-inner {
@@ -84,6 +90,10 @@ textarea:focus ,input[type="search"]{
 
 .inputBtn:hover {
 	background: #lalala;
+}
+
+#displayGIFs {
+	margin-top: 40px;
 }
 
 .gifItems {
@@ -113,9 +123,9 @@ textarea:focus ,input[type="search"]{
     -webkit-text-fill-color: transparent;
 }
 
-#displayGIFs {
+/*#displayGIFs {
 	margin-left: 6rem
-}
+}*/
 
 @-webkit-keyframes gradient {
     0%{background-position:90% 0%}
@@ -138,23 +148,23 @@ textarea:focus ,input[type="search"]{
     100%{background-position:90% 0%}
 }
 
-/*@-webkit-keyframes color-change {
-        0% { color: #f29492; }
-        50% { color: #4568dc; }
-        100% { color: #5bae83; }
-    }
-@-moz-keyframes color-change {
-        0% { color: #f29492; }
-        50% { color: #4568dc; }
-        100% { color: #5bae83; }
-    }
-@-o-keyframes color-change {
-        0% { color: #f29492; }
-        50% { color: #4568dc; }
-        100% { color: #5bae83; }
-    }
-@keyframes color-change {
-        0% { color: #f29492; }
-        50% { color: #4568dc; }
-        100% { color: #5bae83; }
-    }*/
+
+
+@media screen and (max-width: 768px){
+	.logo {
+		font-size: 8rem;
+	}
+
+	.queryBtn {
+		font-size: 17px;
+	}
+}
+
+@media screen and (max-width: 640px){
+	.logo{
+		font-size: 6rem;
+	}
+	.queryBtn {
+		font-size: 14px;
+	}
+}
