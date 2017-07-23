@@ -127,6 +127,8 @@ var gifTastic = {
 
 window.onload = function () {
 
+	$('[data-toggle="tooltip"]').tooltip();
+
 	//render initial buttons 
 	gifTastic.renderButtons();
 

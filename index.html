@@ -16,6 +16,9 @@
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Roboto:400,900|Sniglet:400,800" rel="stylesheet">
 
+	<!-- Font Awesome -->
+<!-- <script src="https://use.fontawesome.com/c607dc83f4.js"></script> -->
+
 	<!-- Style.css -->
 	<link href="assets/css/style.css" rel="stylesheet" type="text/css">
 
@@ -39,12 +42,20 @@
 				<!-- FORM -->
 				<form>
 					<div class="form-group row text-center">
-						<div class="col-md-9 col-sm-6 col-sm-offset-1">
+						<div class="input-group">
+							<input class="form-control input-lg" type="search" placeholder="Type Something..." id="searchInput">
+							<div class="input-group-btn">
+								<button type="submit" value="Search" class="btn btn-default btn-lg inputBtn" data-toggle="tooltip" data-placement="bottom" title="Add Button"><span class="glyphicon glyphicon-plus"></span></button>
+								<button type="submit" value="Search" class="btn btn-default btn-lg inputBtn" data-toggle="tooltip" data-placement="bottom" title="Search"><span class="glyphicon glyphicon-search"></span></button>
+							
+						 	</div>
+						</div>
+						<!-- <div class="col-md-9 col-sm-6 col-sm-offset-1">
 							<input class="form-control" type="search" placeholder="add Button" id="searchInput">
 						</div>
 						<div class="col-md-1 col-sm-1 text-center">
 							<button type="submit" value="Search" class="btn btn-primary" id="searchBtn"><span class="glyphicon glyphicon-plus"></span></button>
-						</div>
+						</div> -->
 					</div>
 				</form>
 

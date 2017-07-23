@@ -6,7 +6,7 @@ html, body {
 	width: 100%;
 	font-family: 'Sniglet', cursive;
 	color: white;
-	background: #333;
+	background: #121212;
 }
 
 #btnContainer {
@@ -54,20 +54,42 @@ html, body {
 	right: 0;
 }
 
-#searchBtn {
-	position: relative;
-	width: 60px;
-	padding: 10px auto;
-	left: -35px;
+.queryBtn:focus {
+	outline: none;
 }
 
+/*#searchBtn {
+	position: relative;
+	width: 60px;
+	padding: 6.6px 13px;
+	left: -30px;
+}*/
 
+/* Tooltip */
+.inputBtn + .tooltip > .tooltip-inner {
+	background-color: #f1c40f;
+	color: #131313;
+}
+.inputBtn + .tooltip > .tooltip-arrow { border-bottom-color:#f1c40f; }
+
+#searchInput, .inputBtn{
+	background: #444;
+	border: 1px solid #444;
+	color: white;
+}
+
+textarea:focus ,input[type="search"]{
+  outline: 0 none;
+}
+
+.inputBtn:hover {
+	background: #lalala;
+}
 
 .gifItems {
 	display: inline-block;
 	margin: 1rem;
 	text-align: center;
-
 }
 
 .logo {
