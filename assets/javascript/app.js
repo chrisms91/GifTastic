@@ -89,29 +89,31 @@ var gifTastic = {
   			var overlayDiv = $('<div>');
   			overlayDiv.addClass('overlay');
 
-  			var overlayIcon = $('<a>');
-  			overlayIcon.addClass('overlayAnchor');
-  			overlayIcon.attr('href', parsedDownloadUrl);
-  			overlayIcon.attr('download', 'giphy.gif');
-  			overlayIcon.attr('id', 'downloadIcon');
-  			overlayIcon.attr('data-url', parsedDownloadUrl);
+  			//Download Icon
+  			var overlayDownloadAnchor = $('<a>');
+  			overlayDownloadAnchor.addClass('overlayAnchor');
+  			overlayDownloadAnchor.attr('href', parsedDownloadUrl);
+  			overlayDownloadAnchor.attr('download', 'giphy.gif');
+  			overlayDownloadAnchor.attr('id', 'downloadIcon');
+  			overlayDownloadAnchor.attr('data-url', parsedDownloadUrl);
 
-  			var overlaySpan = $('<span>');
-  			overlaySpan.addClass('glyphicon glyphicon-download-alt');
-  			overlayIcon.append(overlaySpan);
-  			overlayDiv.append(overlayIcon);
+  			var overlayDownloadSpan = $('<span>');
+  			overlayDownloadSpan.addClass('glyphicon glyphicon-download-alt');
+  			overlayDownloadAnchor.append(overlayDownloadSpan);
+  			overlayDiv.append(overlayDownloadAnchor);
 
-  			var overlayIcon1 = $('<a>');
-  			overlayIcon1.addClass('overlayAnchor');
-  			overlayIcon1.attr('href', parsedDownloadUrl);
-  			overlayIcon1.attr('download', 'giphy.gif');
-  			overlayIcon1.attr('id', 'enlargeIcon');
-  			overlayIcon1.attr('data-url', parsedDownloadUrl);
+  			//Enlarge Icon
+  			var overlayEnlargeAnchor = $('<a>');
+  			overlayEnlargeAnchor.addClass('overlayAnchor');
+  			overlayEnlargeAnchor.attr('href', parsedDownloadUrl);
+  			overlayEnlargeAnchor.attr('download', 'giphy.gif');
+  			overlayEnlargeAnchor.attr('id', 'enlargeIcon');
+  			overlayEnlargeAnchor.attr('data-url', parsedDownloadUrl);
 
-  			var overlaySpan1 = $('<span>');
-  			overlaySpan1.addClass('glyphicon glyphicon-fullscreen');
-  			overlayIcon1.append(overlaySpan1);
-  			overlayDiv.append(overlayIcon1);
+  			var overlayEnlargeSpan = $('<span>');
+  			overlayEnlargeSpan.addClass('glyphicon glyphicon-fullscreen');
+  			overlayEnlargeAnchor.append(overlayEnlargeSpan);
+  			overlayDiv.append(overlayEnlargeAnchor);
 
   			imageDiv.append(overlayDiv);
 
@@ -127,7 +129,6 @@ var gifTastic = {
 		var url = downloadUrl.split('?');
 
 		return url[0];
-
 	},
 
 	//when user click image, it changes src to animate gif.
@@ -199,6 +200,17 @@ window.onload = function () {
 
 		}
 
+	});
+
+	$(document).on('click', '#enlargeIcon', function(event) {
+
+		event.preventDefault();
+
+		var url = $(this).attr('data-url');
+		console.log("enlarge(): " + url);
+
+		$('.enlargeImageModalSource').attr('src', url);
+		$('#enlargeImageModal').modal('show');
 	})
 
 	// $('.queryBtn').on('click', gifTastic.displayInfo);
@@ -216,15 +228,6 @@ window.onload = function () {
 		gifTastic.displayInfo();
 
 	});
-
-	// downloadIcon event handler
-	// $(document).on('click', '#downloadIcon', function(event) {
-
-	// 	var downloadUrl = $(this).attr('data-url');
-	// 	console.log("downloadUrl: " + downloadUrl);
-
-		
-	// })
 
 	// when scroll is at bottom, load more data.
 	$(window).scroll(function () {
