@@ -1,6 +1,11 @@
 /*font-family: 'Montserrat', sans-serif;
 font-family: 'Sniglet', cursive;*/
 
+
+/*-------------
+	General
+--------------*/
+
 html, body {
 	height: 100%;
 	width: 100%;
@@ -9,21 +14,21 @@ html, body {
 	background: #121212;
 }
 
-/* centered columns styles */
 .row-centered {
     text-align:center;
 }
+
 .col-centered {
     display:inline-block;
     float:none;
     text-align:left;
-    /* inline-block space fix */
     margin-right:-4px;
 }
+
 .form-group {
-		margin-bottom: 40px;
-		margin: 0 auto;
-	}
+	margin-bottom: 40px;
+	margin: 0 auto;
+}
 
 /*---------------
 	Buttons
@@ -71,13 +76,20 @@ html, body {
 }
 
 
-/* Tooltip */
+/*-------------
+	Tooltip
+--------------*/
 .inputBtn + .tooltip > .tooltip-inner {
 	background-color: #f1c40f;
 	color: #131313;
 }
-.inputBtn + .tooltip > .tooltip-arrow { border-bottom-color:#f1c40f; }
+.inputBtn + .tooltip > .tooltip-arrow { 
+	border-bottom-color:#f1c40f; 
+}
 
+/*---------------
+	Search Bar
+----------------*/
 #searchInput, .inputBtn{
 	background: #444;
 	border: 1px solid #444;
@@ -92,11 +104,17 @@ textarea:focus ,input[type="search"]{
 	opacity: 0.7;
 }
 
+/*--------------------
+	Display Section
+---------------------*/
 
 #displayGIFs {
 	margin-top: 40px;
 }
 
+/*-------------------
+	Image Overlay
+--------------------*/
 .gifItems {
 	display: inline-block;
 	position: relative;
@@ -107,22 +125,22 @@ textarea:focus ,input[type="search"]{
 .gifs {
 	/*max-width: 300px;*/
 	transition: 0.5s ease;
-
 }
 
 .overlay {
 	transition: 0.5s ease;
-	/*opacity: 0;*/
+	opacity: 0;
 	position: absolute;
-	/*transform: translate(-50%, -50%);
-  	-ms-transform: translate(-50%, -50%);*/
   	bottom: 5%;
-  	left: 4%;
-  	
+  	left: 4%;	
 }
 
 .gifItems:hover .overlay {
 	opacity: 1;
+}
+
+.gifItems:hover .gifs {
+	opacity: 0.6;
 }
 
 .overlayAnchor {
@@ -138,18 +156,18 @@ textarea:focus ,input[type="search"]{
 	margin-right: 8px;
 }
 
+
+/*------------
+	 Logo
+-------------*/
 .logo {
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 500;
 	font-size: 12rem;
-	/*-webkit-animation: color-change 1.5s infinite;
-        -moz-animation: color-change 1.5s infinite;
-        -o-animation: color-change 1.5s infinite;
-        -ms-animation: color-change 1.5s infinite;
-        animation: color-change 1.5s infinite;*/
-
+	
     background: linear-gradient(231deg, #f29492, #4568dc, #b06ab3, #5bae83, #ae5b70, #5bae83);
     background-size: 200% auto;
+
 	animation: gradient 8s ease infinite;
 	-webkit-animation: gradient 8s ease infinite;
 	-moz-animation: gradient 8s ease infinite;
@@ -159,10 +177,10 @@ textarea:focus ,input[type="search"]{
     -webkit-text-fill-color: transparent;
 }
 
-/*#displayGIFs {
-	margin-left: 6rem
-}*/
 
+/*------------------------
+	logo color gradient 
+-------------------------*/
 @-webkit-keyframes gradient {
     0%{background-position:90% 0%}
     50%{background-position:11% 100%}
@@ -185,6 +203,9 @@ textarea:focus ,input[type="search"]{
 }
 
 
+/*-------------------
+	Media Query
+--------------------*/
 
 @media screen and (max-width: 768px){
 	.logo {

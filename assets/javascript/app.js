@@ -2,13 +2,13 @@
 //queryURL: http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=dc6zaTOxFJmzC & limit=5
 
 
+// gifTastic Object
 var gifTastic = {
 
 	buttonArray: ['you', 'should', 'drink', 'beer', 'everyday', 'laugh', 'lol', 'party', 'dogs', 'cats', 'chanel'],
 	offset: 0,
 	loadLimit: 10,
 	results: {},
-
 
 	renderButtons: function() {
 
@@ -26,6 +26,7 @@ var gifTastic = {
 		}
 	},
 
+	// Giphy API ajax call and save result object
 	loadData: function (input, inputQuery) {
 		console.log("loadData() is called");
 		var value = input;
@@ -46,15 +47,8 @@ var gifTastic = {
       	});
 	},
 
+	// set gif attributes and append to html.
 	displayInfo: function () {
-
-		// var value = $(this).attr('data-value');
-		// console.log(value);
-  //     	var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + value + "&api_key=dc6zaTOxFJmzC&limit=200";
-  //     	var results;
-
-      	//grab data from ajax call.
-      	
 
       	console.log("displayInfo() is called");
       	console.log("offset: " + gifTastic.offset);
@@ -69,8 +63,6 @@ var gifTastic = {
   			var downloadUrl = gifTastic.results[i].images.original.url;
 
   			var parsedDownloadUrl = gifTastic.parseUrl(downloadUrl);
-
-  			console.log("parsed URL: " + parsedDownloadUrl);
 
   			//append rating
   			var p = $('<p>').text("Rating: " + gifTastic.results[i].rating);
@@ -117,12 +109,11 @@ var gifTastic = {
 
   			imageDiv.append(overlayDiv);
 
-
-
   			$('#displayGIFs').append(imageDiv);
   		}
 	},
 
+	//remove urls' fingerprint to use it for downloading
 	parseUrl: function (downloadUrl) {
 
 		//parse string to remove fingerprint
@@ -202,6 +193,7 @@ window.onload = function () {
 
 	});
 
+	//EnlargeIcon event handler
 	$(document).on('click', '#enlargeIcon', function(event) {
 
 		event.preventDefault();
