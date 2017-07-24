@@ -5,7 +5,7 @@
 // gifTastic Object
 var gifTastic = {
 
-	buttonArray: ['you', 'should', 'drink', 'beer', 'everyday', 'laugh', 'lol', 'party', 'dogs', 'cats', 'chanel'],
+	buttonArray: ['you', 'should', 'drink', 'beer', 'everyday', 'laugh', 'lol', 'party', 'dogs', 'cats', 'star', 'dj'],
 	offset: 0,
 	loadLimit: 10,
 	results: {},
