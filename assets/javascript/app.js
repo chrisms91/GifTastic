@@ -42,6 +42,7 @@ var gifTastic = {
       		
       		//store data in object variable results.
       		gifTastic.results = event.data;
+      		console.log(event.data);
       	});
 	},
 
@@ -65,6 +66,11 @@ var gifTastic = {
 
   			var animateLink = gifTastic.results[i].images.fixed_height.url;
   			var stillLink = gifTastic.results[i].images.fixed_height_still.url;
+  			var downloadUrl = gifTastic.results[i].images.original.url;
+
+  			var parsedDownloadUrl = gifTastic.parseUrl(downloadUrl);
+
+  			console.log("parsed URL: " + parsedDownloadUrl);
 
   			//append rating
   			var p = $('<p>').text("Rating: " + gifTastic.results[i].rating);
@@ -80,8 +86,48 @@ var gifTastic = {
   			imageDiv.append(p);
   			imageDiv.append(gifImage);
 
+  			var overlayDiv = $('<div>');
+  			overlayDiv.addClass('overlay');
+
+  			var overlayIcon = $('<a>');
+  			overlayIcon.addClass('overlayAnchor');
+  			overlayIcon.attr('href', parsedDownloadUrl);
+  			overlayIcon.attr('download', 'giphy.gif');
+  			overlayIcon.attr('id', 'downloadIcon');
+  			overlayIcon.attr('data-url', parsedDownloadUrl);
+
+  			var overlaySpan = $('<span>');
+  			overlaySpan.addClass('glyphicon glyphicon-download-alt');
+  			overlayIcon.append(overlaySpan);
+  			overlayDiv.append(overlayIcon);
+
+  			var overlayIcon1 = $('<a>');
+  			overlayIcon1.addClass('overlayAnchor');
+  			overlayIcon1.attr('href', parsedDownloadUrl);
+  			overlayIcon1.attr('download', 'giphy.gif');
+  			overlayIcon1.attr('id', 'enlargeIcon');
+  			overlayIcon1.attr('data-url', parsedDownloadUrl);
+
+  			var overlaySpan1 = $('<span>');
+  			overlaySpan1.addClass('glyphicon glyphicon-fullscreen');
+  			overlayIcon1.append(overlaySpan1);
+  			overlayDiv.append(overlayIcon1);
+
+  			imageDiv.append(overlayDiv);
+
+
+
   			$('#displayGIFs').append(imageDiv);
   		}
+	},
+
+	parseUrl: function (downloadUrl) {
+
+		//parse string to remove fingerprint
+		var url = downloadUrl.split('?');
+
+		return url[0];
+
 	},
 
 	//when user click image, it changes src to animate gif.
@@ -102,25 +148,6 @@ var gifTastic = {
         		$(this).attr('data-state', 'still');
 			}
 		})
-
-		//DIDNT WORK FOR SOME REASON AFTER LOADED MORE DATA ON SCROLL';;;
-
-		// $('.gifs').on('click', function(){
-
-		// 	//grab current state of gif
-		// 	var state = $(this).attr('data-state');
-
-		// 	if(state === 'still'){
-
-		// 		$(this).attr('src', $(this).attr('data-animate') );
-  //       		$(this).attr('data-state', 'animate');
-		// 	} else {
-
-		// 		$(this).attr('src', $(this).attr('data-still') );
-  //       		$(this).attr('data-state', 'still');
-		// 	}
-			
-		// })
 	}
 }
 
@@ -128,6 +155,8 @@ var gifTastic = {
 window.onload = function () {
 
 	$('[data-toggle="tooltip"]').tooltip();
+
+	gifTastic.animateGif();
 
 	//render initial buttons 
 	gifTastic.renderButtons();
@@ -156,7 +185,7 @@ window.onload = function () {
 		event.preventDefault();
 
 		var input = $('#searchInput').val().trim();
-		var inputQuery = "http://api.giphy.com/v1/gifs/search?q=" + input + "&api_key=dc6zaTOxFJmzC&limit=200";
+		var inputQuery = "https://api.giphy.com/v1/gifs/search?q=" + input + "&api_key=dc6zaTOxFJmzC&limit=200";
 		console.log("searchBtn input: " + input);
 
 		if(input.length === 0){
@@ -177,7 +206,7 @@ window.onload = function () {
 	$(document).on('click', '.queryBtn', function(event) {
 
 		var input = $(this).attr('data-value');
-		var inputQuery = "http://api.giphy.com/v1/gifs/search?q=" + input + "&api_key=dc6zaTOxFJmzC&limit=200";
+		var inputQuery = "https://api.giphy.com/v1/gifs/search?q=" + input + "&api_key=dc6zaTOxFJmzC&limit=200";
 
 		gifTastic.loadData(input, inputQuery);
 
@@ -188,7 +217,14 @@ window.onload = function () {
 
 	});
 
-	gifTastic.animateGif();
+	// downloadIcon event handler
+	// $(document).on('click', '#downloadIcon', function(event) {
+
+	// 	var downloadUrl = $(this).attr('data-url');
+	// 	console.log("downloadUrl: " + downloadUrl);
+
+		
+	// })
 
 	// when scroll is at bottom, load more data.
 	$(window).scroll(function () {

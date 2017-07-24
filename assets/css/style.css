@@ -99,12 +99,43 @@ textarea:focus ,input[type="search"]{
 
 .gifItems {
 	display: inline-block;
+	position: relative;
 	margin: 1rem;
 	text-align: center;
 }
 
 .gifs {
-	max-width: 300px;
+	/*max-width: 300px;*/
+	transition: 0.5s ease;
+
+}
+
+.overlay {
+	transition: 0.5s ease;
+	/*opacity: 0;*/
+	position: absolute;
+	/*transform: translate(-50%, -50%);
+  	-ms-transform: translate(-50%, -50%);*/
+  	bottom: 5%;
+  	left: 4%;
+  	
+}
+
+.gifItems:hover .overlay {
+	opacity: 1;
+}
+
+.overlayAnchor {
+	background-color: #12080F;
+	opacity: 0.8;
+	padding: 8px;
+	color: white;
+	float: left;
+	/*margin-right: 8px;*/
+}
+
+.overlayAnchor:nth-child(1){
+	margin-right: 8px;
 }
 
 .logo {
