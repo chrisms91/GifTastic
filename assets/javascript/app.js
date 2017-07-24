@@ -133,13 +133,13 @@ window.onload = function () {
 	gifTastic.renderButtons();
 
 	//handle event when searchBtn is clicked
-	$('#searchBtn').on('click', function(event) {
+	$('#addBtn').on('click', function(event) {
 
 		event.preventDefault();
 
-		var input = $('#searchInput').val();
+		var input = $('#searchInput').val().trim();
 
-		console.log(input);
+		console.log("addBtn input: " + input);
 
 		if(input.length === 0){
 			alert('type something to add');
@@ -149,6 +149,28 @@ window.onload = function () {
 
 		gifTastic.renderButtons();
 	});
+
+	//Seach directly w/o making button
+	$('#searchBtn').on('click', function(event) {
+
+		event.preventDefault();
+
+		var input = $('#searchInput').val().trim();
+		var inputQuery = "http://api.giphy.com/v1/gifs/search?q=" + input + "&api_key=dc6zaTOxFJmzC&limit=200";
+		console.log("searchBtn input: " + input);
+
+		if(input.length === 0){
+			alert('type something to search');
+		} else {
+
+			gifTastic.loadData(input, inputQuery);
+			gifTastic.offset = 0;
+			$('#displayGIFs').empty();
+			gifTastic.displayInfo();
+
+		}
+
+	})
 
 	// $('.queryBtn').on('click', gifTastic.displayInfo);
 	//since queryBtns are dynamically created, it has to be handled with $(document) level
