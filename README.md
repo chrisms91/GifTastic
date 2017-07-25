@@ -13,3 +13,5 @@
  - ~~add search bar~~
  - ~~search bar and add button input design~~
  - ~~hover effect on gif to display information about it~~ (added download button and enlarge button instead)
+
+ [Live Here](https://chrisms91.github.io/GifTastic/)
